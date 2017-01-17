@@ -1,6 +1,6 @@
 # Django Lender
 
-*Author:* Nicholas Hunt-Walker and the class of Python 401d5
+**Author:** Nicholas Hunt-Walker and the class of Python 401d5
 
 An app for managing the lending of books from an online book library.
 
