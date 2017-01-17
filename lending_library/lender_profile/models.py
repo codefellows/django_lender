@@ -25,9 +25,9 @@ class PatronProfile(models.Model):
     library_id = models.UUIDField(default=uuid.uuid4, editable=False)
 
 
-@receiver(post_save, sender=User)
-def make_profile_for_user(sender, instance, **kwargs):
-    """When a user is saved, a new profile is created."""
-    new_profile = PatronProfile(user=instance)
-    new_profile.money_owed = 0.0
-    new_profile.save()
+# @receiver(post_save, sender=User)
+# def make_profile_for_user(sender, instance, **kwargs):
+#     """When a user is saved, a new profile is created."""
+#     new_profile = PatronProfile(user=instance)
+#     new_profile.money_owed = 0.0
+#     new_profile.save()
