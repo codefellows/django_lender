@@ -1,9 +1,10 @@
+"""Model for the lender_profile app."""
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
 
-from django.db.models.signals import post_save # <-- after saving a thing, do a thing
-from django.dispatch import receiver # <-- listen for a thing to be done
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -26,6 +27,7 @@ class PatronProfile(models.Model):
 
 @receiver(post_save, sender=User)
 def make_profile_for_user(sender, instance, **kwargs):
+    """When a user is saved, a new profile is created."""
     new_profile = PatronProfile(user=instance)
     new_profile.money_owed = 0.0
     new_profile.save()
