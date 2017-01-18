@@ -6,8 +6,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
-I WANT FOOD. NOW. {{ beg_for_it }}
-
-{{ num }} {{ word }}
+MY BOOKS:
+<ul>
+{% for book in books %}
+    <li><img src="{{ book.cover_image.url}}" /></li>
+{% endfor %}
+</ul>
 </body>
 </html>

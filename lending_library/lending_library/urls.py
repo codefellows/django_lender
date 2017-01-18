@@ -13,15 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from lending_library.views import (
     home_view,
     test_view
 )
+from books.views import book_list
+
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^home/$', home_view, name="home"),
+    url(r'^$', home_view, name="home"),
     url(r'^(?P<num>\d+)/(?P<word>\w+)$', test_view, name="test"),
+    url(r'^profile/', include("lender_profile.urls")),
+    url(r'^books$', book_list, name="book_list")
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
