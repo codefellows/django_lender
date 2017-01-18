@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/codefellows/django_lender.svg?branch=master)](https://travis-ci.org/codefellows/django_lender)
 
+[![Coverage Status](https://coveralls.io/repos/github/codefellows/django_lender/badge.svg?branch=master)](https://coveralls.io/github/codefellows/django_lender?branch=master)
+
 **Author:** Nicholas Hunt-Walker and the class of Python 401d5
 
 An app for managing the lending of books from an online book library.
