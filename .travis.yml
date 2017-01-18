@@ -1,0 +1,23 @@
+language: python
+python:
+  - "2.7"
+  - "3.5"
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c "create database django_lender;" -U postgres
+
+# command to install dependencies
+install:
+  - pip install -r requirements.pip
+  - pip install coveralls
+
+# commands to run tests
+script: 
+  - python lending_library/manage.py migrate
+  - coverage run lending_library/manage.py test lending_library
+
+after_success:
+  - coveralls

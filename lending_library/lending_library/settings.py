@@ -25,7 +25,7 @@ SECRET_KEY = 'w+@g0%#1$6o*#(8-)bnp@viou*f@ro+_pvxntkzer=^bx4n^k0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lender_profile'
+    'lender_profile',
+    'lending_library'
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django_lender',
-        'USER': 'Nick',
+        # 'USER': 'Nick',
         'HOST': '127.0.0.1',
         'PORT': '5432',
         'TEST': {
