@@ -19,7 +19,8 @@ from lending_library.views import (
     home_view,
     test_view
 )
-from books.views import book_list
+
+import books.urls as book_urls
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -30,7 +31,7 @@ urlpatterns = [
     url(r'^$', home_view, name="home"),
     url(r'^(?P<num>\d+)/(?P<word>\w+)$', test_view, name="test"),
     url(r'^profile/', include("lender_profile.urls")),
-    url(r'^books$', book_list, name="book_list")
+    url(r"^books/", include(book_urls))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
