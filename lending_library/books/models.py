@@ -1,3 +1,4 @@
+"""The book model."""
 from django.db import models
 from lender_profile.models import PatronProfile
 
@@ -5,8 +6,8 @@ from lender_profile.models import PatronProfile
 
 
 class Book(models.Model):
-
     """The book model."""
+
     title = models.CharField(max_length=255, blank=True, null=True)
     author = models.CharField(max_length=255, blank=True, null=True)
     publisher = models.CharField(max_length=255, blank=True, null=True)
@@ -16,11 +17,12 @@ class Book(models.Model):
     year = models.CharField(max_length=4, choices=YEARS)
     cover_image = models.ImageField(upload_to="book_covers")
 
-    borrower = models.ForeignKey(PatronProfile,
-                                 related_name="borrowed",
-                                 blank=True,
-                                 null=True
-                                 )
+    borrower = models.ForeignKey(
+        PatronProfile,
+        related_name="borrowed",
+        blank=True,
+        null=True
+    )
 
     BOOK_STATUS = [
         ("available", "Available"),

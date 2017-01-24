@@ -1,16 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-</head>
-<body>
+{% extends 'layout.html' %}
+{% block content %}
+
 MY BOOKS:
 <ul>
 {% for book in books %}
     <li><img src="{{ book.cover_image.url}}" /></li>
 {% endfor %}
-</ul>
-</body>
-</html>
+
+{% endblock %} 
