@@ -17,21 +17,33 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from lending_library.views import (
     home_view,
-    test_view
+    test_view,
+    # SampleView
 )
 
 import books.urls as book_urls
+from books.models import Book
 
 from django.conf import settings
 from django.conf.urls.static import static
+
+from django.views.generic import TemplateView, DetailView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home_view, name="home"),
-    url(r'^(?P<num>\d+)/(?P<word>\w+)$', test_view, name="test"),
     url(r'^profile/', include("lender_profile.urls")),
-    url(r"^books/", include(book_urls))
+    url(r"^books/", include(book_urls)),
+
+    url(r"^test/(?P<color>\w+)/(?P<number>\d+)$",
+        TemplateView.as_view(template_name="potato/test.html"),
+        name="test"),
+
+    url(r"^this_book/(?P<pk>\d+)", DetailView.as_view(
+        template_name="potato/test.html",
+        model=Book
+    ))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
