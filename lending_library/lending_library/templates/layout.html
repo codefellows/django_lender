@@ -10,10 +10,15 @@
     <ul>
         <li><a href="{% url 'book_list' %}">Book List</a></li>
         <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'logout' %}">Log Out</a></li>
+        <li><a href="{% url 'add_book' %}">Add a New Book</a></li>
+        <li><a href="{% url 'auth_profile' %}">Profile</a></li>        
+        <li><a href="{% url 'login' %}">Log In</a></li>
+        <li><a href="{% url 'registration_register' %}">Register</a></li>
     </ul>
 </nav>
-{% block content %}{% endblock %}
 
+{% block content %}{% endblock %}
 
 </body>
 </html>

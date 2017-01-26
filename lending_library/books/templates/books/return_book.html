@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<p>Are you ready to return {{ book.title }} to the library?</p>
+
+<form method='POST'>
+  <input type="radio" name="return_me" value="true">Yes<br>
+  <input type="radio" name="return_me" value="false">I still have reading to do<br>
+<input type="submit" value="Submit" />
+</form>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h2>All Books</h2>
+<ul id="book-list">
+{% for book in books %}
+    <li class="book-item">
+        <img src="{{ book.cover_image.url}}" class="book-cover" />
+        <ul class="options">
+            <li><a href="{% url 'book_detail' book.pk %}">Book Details</a></li>
+            <li><a href="{% url 'loan_book' book.pk %}">Loan Book</a></li>
+            <li><a href="{% url 'remove_book' book.pk %}">Remove Book</a></li>
+        </ul>
+    </li>
+{% endfor %}
+
+{% endblock %} 

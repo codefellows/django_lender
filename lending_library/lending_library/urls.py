@@ -20,12 +20,11 @@ from lending_library.views import (
 )
 
 import books.urls as book_urls
-from books.models import Book
 
 from django.conf import settings
 from django.conf.urls.static import static
 
-from django.views.generic import TemplateView, DetailView
+from django.contrib.auth.views import login, logout
 
 
 urlpatterns = [
@@ -33,15 +32,9 @@ urlpatterns = [
     url(r'^$', home_view, name="home"),
     url(r'^profile/', include("lender_profile.urls")),
     url(r"^books/", include(book_urls)),
-
-    url(r"^test/(?P<color>\w+)/(?P<number>\d+)$",
-        TemplateView.as_view(template_name="potato/test.html"),
-        name="test"),
-
-    url(r"^this_book/(?P<pk>\d+)", DetailView.as_view(
-        template_name="potato/test.html",
-        model=Book
-    ))
+    url(r'^registration/', include("registration.backends.simple.urls")),
+    url(r'^login$', login, name="login"),
+    url(r'^logout$', logout, name='logout')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

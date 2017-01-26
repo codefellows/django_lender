@@ -1,3 +1,15 @@
-body {
-    color: red;
+
+.book-cover {
+    height: 200px;
+}
+.left {
+    float: left;
+    margin-right: 50px;
+}
+#book-list li.book-item {
+    display: inline-block;
+    margin: 7px;
+}
+.options li {
+    margin-left: -20px;
 }

@@ -33,3 +33,7 @@ class Book(models.Model):
         choices=BOOK_STATUS,
         default="available"
     )
+
+    def __str__(self):
+        """String representation of the book."""
+        return self.title

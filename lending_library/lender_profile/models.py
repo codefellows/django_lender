@@ -25,6 +25,10 @@ class PatronProfile(models.Model):
     address = models.CharField(max_length=255, blank=True, null=True)
     library_id = models.UUIDField(default=uuid.uuid4, editable=False)
 
+    def __str__(self):
+        """String representation of the profile."""
+        return self.user.username
+
 
 @receiver(post_save, sender=User)
 def make_profile_for_user(sender, instance, **kwargs):

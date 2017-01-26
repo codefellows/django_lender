@@ -1,6 +1,32 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-This would be the detail page for an individual book but this has not yet been implemented.
+<h2>Profile for {{ profile.user.username }}</h2>
+<ul>
+    <li>Money Owed: ${{ profile.money_owed }}</li>
+    <li>Address: {{ profile.address }}</li>
+    <li>Employment Status: 
+    {% if profile.employed %}
+        Employed
+    {% else %}
+        Unemployed
+    {% endif %}
+    </li>
+    <li>Library Card No.: {{ profile.library_id }}</li>
+</ul>
+
+<h2>Books Borrowed</h2>
+
+<ul id="book-list">
+{% for book in profile.borrowed.all %}
+    <li class="book-item">
+        <img src="{{ book.cover_image.url}}" class="book-cover" />
+        <ul class="options">
+            <li><a href="{% url 'book_detail' book.pk %}">Book Details</a></li>
+            <li><a href="{% url 'return_book' book.pk %}">Return Book</a></li>
+            <li><a href="{% url 'remove_book' book.pk %}">Remove Book</a></li>
+        </ul>
+    </li>
+{% endfor %}
 
 {% endblock %} 

@@ -75,6 +75,28 @@ Currently the configuration will show which lines were missing from the test cov
 - address (unicode)
 - library_id (uuid)
 
+*Book*
+
+- title (str < 256)
+- author (str < 256)
+- publisher (str < 256)
+- isbn (integer)
+- year (str < 5; choice field)
+- cover_image (image field uploading to `book_covers` in `MEDIA`)
+- borrower (related to the PatronProfile)
+- status (str < 21; choice field)
+
 ## Current URL Routes
 
+- `/`
+- `/profile`
+- `/profile/<username>`
+- `/books`
+- `/books/<pk>`
+- `/books/new`
+- `/books/remove/<pk>`
+- `/books/loan/<pk>`
+- `/registration/register`
+- `/login`
+- `/logout`
 - `/admin`

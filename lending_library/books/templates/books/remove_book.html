@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<form method='POST'>
+{% csrf_token %}
+<input type="submit" value="Remove the Book" />
+</form>
+
+{% endblock %}

@@ -133,3 +133,6 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
 MEDIA_URL = "/media/"
+
+# Django registration
+LOGIN_REDIRECT_URL = '/'

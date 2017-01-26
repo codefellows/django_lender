@@ -1,23 +1,12 @@
 """."""
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from lender_profile.models import PatronProfile
 
 
 def home_view(request):
     """The home view."""
+    profiles = PatronProfile.objects.all()
     return render(request,
                   "potato/home.html",
-                  {"beg_for_it": "PLEASE"}
-                  )
-
-
-def test_view(request, num=None, word=None):
-    """."""
-    return render(request,
-                  "potato/home.html",
-                  {
-                      "beg_for_it": "PLEASE",
-                      "num": num,
-                      "word": word
-                  }
+                  {"patrons": profiles}
                   )
