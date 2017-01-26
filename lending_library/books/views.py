@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import DeleteView, CreateView
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 
 from books.forms import LoanForm
 from books.models import Book
@@ -51,4 +52,24 @@ def loan_book(request, pk):
         request,
         "books/lend_book.html",
         {"form": form, "book": book}
+    )
+
+
+@csrf_exempt
+def return_book(request, pk):
+    """Lend a book out to a user."""
+    book = Book.objects.get(pk=pk)
+
+    if request.method == "POST" and request.POST["return_me"] == "true":
+        profile = book.borrower
+        profile.borrowed.remove(book)
+        profile.save()
+        book.status = "available"
+        book.save()
+        return redirect(reverse_lazy("book_list"))
+
+    return render(
+        request,
+        "books/return_book.html",
+        {"book": book}
     )

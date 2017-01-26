@@ -7,7 +7,8 @@ from books.views import (
     book_list,
     NewBook,
     RemoveBook,
-    loan_book
+    loan_book,
+    return_book
 )
 
 
@@ -20,5 +21,6 @@ urlpatterns = [
     ), name="book_detail"),
     url(r"^new$", NewBook.as_view(), name="add_book"),
     url(r"^remove/(?P<pk>\d+)$", RemoveBook.as_view(), name="remove_book"),
-    url(r"^loan/(?P<pk>\d+)$", loan_book, name="loan_book")
+    url(r"^loan/(?P<pk>\d+)$", loan_book, name="loan_book"),
+    url(r"^return/(?P<pk>\d+)$", return_book, name="return_book"),    
 ]
