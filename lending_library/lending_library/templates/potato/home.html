@@ -1,6 +1,21 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-Welcome to the Django Lender. This is the home page.
+<p>Welcome to the Django Lender. This is the home page.</p>
+
+<h2>Here are the patrons and the books they've borrowed</h2>
+{% for patron in patrons %}
+<section>
+<h3>{{ patron.user.username }}</h3>
+    {% if patron.borrowed %}
+        <ul>
+        {% for book in patron.borrowed.all %}
+            <li>{{ book.title }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</section>
+{% endfor %}
+
 
 {% endblock %} 
