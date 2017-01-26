@@ -1,4 +1,4 @@
-"""lending_library URL Configuration
+"""lending_library URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -17,8 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from lending_library.views import (
     home_view,
-    test_view,
-    # SampleView
 )
 
 import books.urls as book_urls

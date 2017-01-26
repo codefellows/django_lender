@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w+@g0%#1$6o*#(8-)bnp@viou*f@ro+_pvxntkzer=^bx4n^k0'
+SECRET_KEY = os.environ.get("SECRET_KEY", "")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get("DEBUG", "True"))
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
@@ -79,10 +79,11 @@ WSGI_APPLICATION = 'lending_library.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_lender',
-        # 'USER': 'Nick',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': os.environ.get("DB_NAME", 'django_lender'),
+        'USER': os.environ.get("DB_USER", "Nick"),
+        'HOST': os.environ.get("DB_HOST", "127.0.0.1"),
+        'PASSWORD': os.environ.get("DB_PASS", ""),
+        'PORT': os.environ.get("DB_PORT", "5432"),
         'TEST': {
             'NAME': 'test_lender'
         }

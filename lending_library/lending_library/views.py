@@ -1,7 +1,6 @@
+"""."""
 from django.shortcuts import render
 from django.views.generic import TemplateView
-
-
 
 
 def home_view(request):
@@ -13,9 +12,12 @@ def home_view(request):
 
 
 def test_view(request, num=None, word=None):
+    """."""
     return render(request,
                   "potato/home.html",
-                  {"beg_for_it": "PLEASE",
-                   "num": num,
-                   "word": word}
+                  {
+                      "beg_for_it": "PLEASE",
+                      "num": num,
+                      "word": word
+                  }
                   )
