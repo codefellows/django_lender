@@ -1,3 +1,4 @@
+"""The URLs for the lender_profile app."""
 from django.conf.urls import url
 from lender_profile.views import (
     profile_view,
