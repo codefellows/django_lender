@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h2>{{ book.title }}</h2>
+<p><img src="{{ book.cover_image.url}}" class="book-cover left"></p>
+<p>Author: {{ book.author}}</p>
+<p>Publisher: {{ book.publisher}}</p>
+<p>ISBN: {{ book.isbn}}</p>
+<p>Year: {{ book.year}}</p>
+<p>Status: {{ book.status}}</p>
+{% if book.status == "checked out" %}
+    <p>Borrower: {{ book.borrower }}</p>
+{% endif %}
+{% endblock %} 
