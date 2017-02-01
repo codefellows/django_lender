@@ -1,8 +1,10 @@
 """Views for the book app."""
 from django.shortcuts import render, redirect
-from django.views.generic import DeleteView, CreateView
+from django.views.generic import DeleteView, CreateView, ListView
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 from books.forms import LoanForm
 from books.models import Book
@@ -16,7 +18,7 @@ def book_list(request):
     return render(request, "books/book_list.html", {"books": books})
 
 
-class NewBook(CreateView):
+class NewBook(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Create a new book."""
 
     template_name = "books/add_book.html"
@@ -26,16 +28,21 @@ class NewBook(CreateView):
         "year", "cover_image", "status"
     ]
     success_url = reverse_lazy("book_list")
+    login_url = reverse_lazy("login")
+    permission_required = "lender_books.add_book"
 
 
-class RemoveBook(DeleteView):
+class RemoveBook(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Remove a book."""
 
     template_name = "books/remove_book.html"
     model = Book
     success_url = reverse_lazy("book_list")
+    login_url = reverse_lazy("login")
+    permission_required = ["lender_books.potato"]
 
 
+@login_required(login_url=reverse_lazy("login"))
 def loan_book(request, pk):
     """Lend a book out to a user."""
     book = Book.objects.get(pk=pk)
@@ -55,6 +62,7 @@ def loan_book(request, pk):
     )
 
 
+@login_required(login_url=reverse_lazy("/login"))
 @csrf_exempt
 def return_book(request, pk):
     """Lend a book out to a user."""
@@ -73,3 +81,17 @@ def return_book(request, pk):
         "books/return_book.html",
         {"book": book}
     )
+
+
+class TagListView(ListView):
+    template_name = "books/tag_list.html"
+    slug_field_name = "tag"
+    context_object_name = "books"
+
+    def get_queryset(self):
+        return Book.objects.filter(tags__slug=self.kwargs.get("tag")).all()
+
+    def get_context_data(self, **kwargs):
+        context = super(TagListView, self).get_context_data(**kwargs)
+        context["tag"] = self.kwargs.get("tag")
+        return context

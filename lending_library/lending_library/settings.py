@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lending_library',
     'lender_profile',
-    'books'
+    'books',
+    'taggit'
 ]
 
 MIDDLEWARE = [

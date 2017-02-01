@@ -1,6 +1,7 @@
 """The book model."""
 from django.db import models
 from lender_profile.models import PatronProfile
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
@@ -33,6 +34,7 @@ class Book(models.Model):
         choices=BOOK_STATUS,
         default="available"
     )
+    tags = TaggableManager()
 
     def __str__(self):
         """String representation of the book."""
